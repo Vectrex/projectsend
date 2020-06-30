@@ -112,11 +112,11 @@ $get_categories = get_categories();
 /**
  * Make an array of file urls that are on the DB already.
  */
-$statement = $dbh->prepare("SELECT DISTINCT original_url FROM " . TABLE_FILES);
+$statement = $dbh->prepare("SELECT DISTINCT url FROM " . TABLE_FILES);
 $statement->execute();
 $statement->setFetchMode(PDO::FETCH_ASSOC);
 while( $row = $statement->fetch() ) {
-	$urls_db_files[] = $row["original_url"];
+	$urls_db_files[] = $row["url"];
 }
 
 /**
@@ -170,7 +170,10 @@ while( $row = $statement->fetch() ) {
 					}
 					if (!empty($new_filename)) {
 						$delete_key = array_search($file['original'], $uploaded_files);
-						unset($uploaded_files[$delete_key]);
+                        unset($uploaded_files[$delete_key]);
+                        
+                        $new_filename = basename($new_filename);
+                        $original_filename = basename($original_filename);
 
 						/**
 						 * Unassigned files are kept as orphans and can be related

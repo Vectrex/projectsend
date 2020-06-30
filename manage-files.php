@@ -485,7 +485,8 @@ include('header.php');
 												$actions_options['unassign']	= __('Unassign','cftp_admin');
 											}
 											else {
-												$actions_options['delete']		= __('Delete','cftp_admin');
+                                                $actions_options['delete']		= __('Delete','cftp_admin');
+                                                $actions_options['zip']         = __('Download zipped','cftp_admin');
 											}
 
 											foreach ( $actions_options as $val => $text ) {

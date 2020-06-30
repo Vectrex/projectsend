@@ -33,6 +33,89 @@ function is_projectsend_installed()
 	}
 }
 
+/** Gets a Json file from and url and caches the result */
+function getJson($url, $cache_time) {
+    $cache_dir = JSON_CACHE_DIR;
+    $cacheFile = $cache_dir . DS . md5($url);
+    
+    if (file_exists($cacheFile)) {
+        $fh = fopen($cacheFile, 'r');
+        $cacheTime = trim(fgets($fh));
+        // if data was cached recently, return cached data
+        if ($cacheTime > strtotime($cache_time)) {
+            return fread($fh, filesize($cacheFile));
+        }
+        // else delete cache file
+        fclose($fh);
+        unlink($cacheFile);
+    }
+    $json = file_get_contents($url);
+    $fh = fopen($cacheFile, 'w');
+    fwrite($fh, time() . "\n");
+    fwrite($fh, $json);
+    fclose($fh);
+    return $json;
+}
+
+function get_latest_version_data()
+{
+    /** Remove "r" from version */
+    $current_version = substr(CURRENT_VERSION, 1);
+    
+    /**
+     * Compare against the online value.
+     */
+    $versions = getJson(UPDATES_FEED_URI, '-1 days');
+    $versions = json_decode($versions);
+    $latest = $versions[0];
+    $online_version = substr($latest->version, 1);
+    if ($online_version > $current_version) {
+        $return = [
+            'local_version' => $current_version,
+            'latest_version' => $online_version,
+            'update_available' => '1',
+            'url' => $latest->download,
+            'chlog' => $latest->changelog,
+            'diff' => [
+                'security' => $latest->diff->security,
+                'features' => $latest->diff->features,
+                'important' => $latest->diff->important,
+            ],
+        ];
+        return json_encode($return);
+    }
+    else {
+        $return = [
+            'local_version' => $current_version,
+            'latest_version' => $online_version,
+            'update_available' => '0',
+        ];
+        return json_encode($return);
+    }
+}
+
+function format_date($date)
+{
+    if (!$date) {
+        return false;
+    }
+
+    $formatted = date(TIMEFORMAT_USE, strtotime($date));
+
+    return $formatted;
+}
+
+function format_time($date)
+{
+    if (!$date) {
+        return false;
+    }
+
+    $formatted = date('h:i:s', strtotime($date));
+
+    return $formatted;
+}
+
 /**
  * Add any existing $_GET parameters as hidden fields on a form
  */
@@ -51,7 +134,7 @@ function form_add_existing_parameters( $ignore = array() )
 				unset( $_GET[$param] );
 			}
 			if ( !is_array( $value ) && !in_array( $param, $ignore ) ) {
-				echo '<input type="hidden" name="' . $param . '" value="' . encode_html($value) . '">';
+				echo '<input type="hidden" name="' . encode_html($param) . '" value="' . encode_html($value) . '">';
 			}
 		}
 	}

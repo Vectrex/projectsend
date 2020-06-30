@@ -246,7 +246,7 @@ switch ($clients_form_type) {
 											echo ' selected="selected"';
 										}
 							?>
-									><?php echo $group['name']; ?></option>
+									><?php echo html_output($group['name']); ?></option>
 							<?php
 								}
 							?>

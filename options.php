@@ -102,6 +102,7 @@ if ($_POST) {
 	 */
 	/** Values that can be empty */
 	$allowed_empty_values	= array(
+                                'footer_custom_content',
 								'mail_copy_addresses',
 								'mail_smtp_host',
 								'mail_smtp_port',
@@ -338,7 +339,7 @@ $allowed_file_types = implode(',',$allowed_file_types);
 								<div class="form-group">
 									<label for="footer_custom_content" class="col-sm-4 control-label"><?php _e('Footer content','cftp_admin'); ?></label>
 									<div class="col-sm-8">
-										<input type="text" name="footer_custom_content" id="footer_custom_content" class="form-control" value="<?php echo html_output(FOOTER_CUSTOM_CONTENT); ?>" />
+										<input type="text" name="footer_custom_content" id="footer_custom_content" class="form-control empty" value="<?php echo html_output(FOOTER_CUSTOM_CONTENT); ?>" />
 									</div>
 								</div>
 

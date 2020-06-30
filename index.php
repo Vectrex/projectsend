@@ -52,7 +52,7 @@ $login_button_text = __('Log in','cftp_admin');
 
 	<div class="white-box">
 		<div class="white-box-interior">
-			<div class="ajax_response">
+			<div class="ajax_response alert">
 				<?php
 					/** Coming from an external form */
 					if ( isset( $_GET['error'] ) ) {
@@ -75,8 +75,8 @@ $login_button_text = __('Log in','cftp_admin');
 						$('.ajax_response').html();
 						clean_form(this);
 		
-						is_complete(this.username,'<?php _e('Username was not completed','cftp_admin'); ?>');
-						is_complete(this.password,'<?php _e('Password was not completed','cftp_admin'); ?>');
+						is_complete(this.username, "<?php _e('Username was not completed','cftp_admin'); ?>");
+						is_complete(this.password, "<?php _e('Password was not completed','cftp_admin'); ?>");
 		
 						// show the errors or continue if everything is ok
 						if (show_form_errors() == false) {
@@ -84,24 +84,25 @@ $login_button_text = __('Log in','cftp_admin');
 						}
 						else {
 							var url = $(this).attr('action');
-							$('.ajax_response').html('');
+							$('.ajax_response').html('').removeClass('alert-danger alert-success').slideUp();
 							$('#submit').html('<i class="fa fa-cog fa-spin fa-fw"></i><span class="sr-only"></span> <?php _e('Logging in','cftp_admin'); ?>...');
 							$.ajax({
 									cache: false,
-									type: "get",
+									type: "post",
 									url: url,
 									data: $(this).serialize(), // serializes the form's elements.
 									success: function(response)
 									{
 										var json = jQuery.parseJSON(response);
 										if ( json.status == 'success' ) {
-											//$('.ajax_response').html(json.message);
+											// $('.ajax_response').html(json.message);
+                                            // $('.ajax_response').addClass('alert-success');
 											$('#submit').html('<i class="fa fa-check"></i><span class="sr-only"></span> <?php _e('Redirecting','cftp_admin'); ?>...');
 											$('#submit').removeClass('btn-primary').addClass('btn-success');
 											setTimeout('window.location.href = "'+json.location+'"', 1000);
 										}
 										else {
-											$('.ajax_response').html(json.message);
+                                            $('.ajax_response').addClass('alert-danger').slideDown().html(json.message);
 											$('#submit').html('<?php echo $login_button_text; ?>');
 										}
 									}
@@ -112,7 +113,7 @@ $login_button_text = __('Log in','cftp_admin');
 				});
 			</script>
 		
-			<form action="process.php" name="login_admin" role="form" id="login_form">
+            <form action="process.php?do=login" name="login_admin" role="form" id="login_form">
 				<input type="hidden" name="do" value="login">
 				<fieldset>
 					<div class="form-group">

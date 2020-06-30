@@ -247,7 +247,14 @@ class generateTable {
 	}
 
 	public function pagination( $params ) {
-		$this->output = '';
+        if ( !is_numeric($params['current'])) {
+            $params['current'] = 1;
+        }
+        else {
+            $params['current'] = (int)$params['current'];
+        }
+
+        $this->output = '';
 
 		if ( $params['pages'] > 1 ) {
 			$this->output = '<div class="container-fluid">
@@ -315,7 +322,7 @@ class generateTable {
 			
 			$this->output .= '<div class="form-group">
 									<label class="control-label hidden-xs hidden-sm">' . __('Go to:','cftp_admin') . '</label>
-									<input type="text" class="form-control" name="page" id="go_to_page" value="' . $params['current'] .'" />
+                                    <input type="text" class="form-control" name="page" id="go_to_page" value="' . $params['current'] .'" />
 								</div>
 								<div class="form-group">
 									<button type="submit" class="form-control"><span aria-hidden="true" class="glyphicon glyphicon-ok"></span></button>

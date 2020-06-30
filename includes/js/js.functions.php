@@ -46,7 +46,7 @@ $(document).ready(function(e) {
 	/***********************************************************************************
 		APPLY FORM BULK ACTIONS
 	***********************************************************************************/
-	$("#do_action").click(function() {
+	$("#do_action").click(function(e) {
 		var checks = $("td>input:checkbox").serializeArray();
 		var action = $('#action').val();
 		if (action != 'none') {
@@ -111,7 +111,7 @@ $(document).ready(function(e) {
 				/** TEMPLATES */
 			?>
 				if (action == 'zip') {
-
+                    e.preventDefault();
 					var checkboxes = $.map($('input:checkbox:checked'), function(e,i) {
 						if (e.value != '0') {
 							return +e.value;

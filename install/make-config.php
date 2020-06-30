@@ -82,7 +82,7 @@ if (!$pdo_mysql_available && $pdo_mssql_available) {
 if ($pdo_driver_available) {
 	$dsn = $post_vars['dbdriver'] . ':host=' . $post_vars['dbhost'] . ';dbname=' . $post_vars['dbname'];
 	try{
-		$db = new PDO($dsn, $post_vars['dbuser'], $post_vars['dbpassword'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+		$pdo = new PDO($dsn, $post_vars['dbuser'], $post_vars['dbpassword'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 		$pdo_connected = true;
 	}
 	catch(PDOException $ex){
@@ -93,10 +93,15 @@ if ($pdo_driver_available) {
 /** List of tables comes from sys.vars.php */
 
 // check if tables exists
-$table_exists = false;
+$table_exists = true;
 if ($pdo_connected) {
+    $availableTables = $pdo->query("SHOW TABLES")->fetchAll(\PDO::FETCH_COLUMN);
 	foreach ($all_system_tables as $name) {
-		$table_exists = $table_exists || table_exists($db, $post_vars['dbprefix'].$name);
+        $prefixed = $post_vars['dbprefix'].$name;
+        if (!in_array($prefixed, $availableTables)) {
+            $table_exists = false;
+            break;
+        }
 	}
 }
 $reuse_tables =  $post_vars['dbreuse'] == 'reuse';
@@ -108,13 +113,14 @@ $langs = get_available_languages();
 $lang_ok = array_key_exists($post_vars['lang'], $langs);
 
 // check file & folders are writable
-$config_file = ROOT_DIR.'/includes/sys.config.php';
+$ds = DIRECTORY_SEPARATOR;
+$config_file = ROOT_DIR.$ds.'includes'.$ds.'sys.config.php';
 $config_file_writable = is_writable($config_file) || is_writable(dirname($config_file));
-$upload_dir = ROOT_DIR.'/upload';
-$upload_files_dir = ROOT_DIR.'/upload/files';
+$upload_dir = ROOT_DIR.$ds.'upload';
+$upload_files_dir = ROOT_DIR.$ds.'upload'.$ds.'files';
 $upload_files_dir_writable = is_writable($upload_files_dir) || is_writable($upload_dir);
-$upload_temp_dir = ROOT_DIR.'/upload/temp';
-$upload_temp_dir_writable = is_writable($upload_temp_dir) || is_writable($upload_dir);
+$cache_dir = ROOT_DIR.$ds.'cache';
+$cache_dir_writable = is_writable($cache_dir);
 
 // retrieve user data for web server
 if (function_exists('posix_getpwuid')) {
@@ -125,7 +131,7 @@ if (function_exists('posix_getpwuid')) {
 }
 
 // if everything is ok, we can proceed
-$ready_to_go = $pdo_connected && (!$table_exists || $reuse_tables) && $lang_ok && $config_file_writable && $upload_files_dir_writable && $upload_temp_dir_writable;
+$ready_to_go = $pdo_connected && (!$table_exists || $reuse_tables) && $lang_ok && $config_file_writable && $upload_files_dir_writable && $cache_dir_writable;
 
 // if the user requested to write the config file AND we can proceed, we try to write the new configuration
 if (isset($_POST['submit-start']) && $ready_to_go) {
@@ -157,29 +163,6 @@ if (isset($_POST['submit-start']) && $ready_to_go) {
 		// config file written successfully
 		$config_file_written = true;
 	}
-}
-
-/**
- * Check if a table exists in the current database.
- * (taken from stackoverflow)
- *
- * @param PDO $pdo PDO instance connected to a database.
- * @param string $table Table to search for.
- * @return bool TRUE if table exists, FALSE if no table found.
- */
-function table_exists($pdo, $table) {
-    // Try a select statement against the table
-    // Run it in try/catch in case PDO is in ERRMODE_EXCEPTION.
-    try {
-        $result = $pdo->prepare("SELECT 1 FROM $table LIMIT 1");
-		$result->execute();
-    } catch (Exception $e) {
-        // We got an exception == table not found
-        return false;
-    }
-
-    // Result is either boolean FALSE (no table found) or PDOStatement Object (table found)
-    return $result !== FALSE;
 }
 
 global $status_indicator_ok;
@@ -369,10 +352,10 @@ include_once( ABS_PARENT . '/header-unlogged.php' );
 																			'file'		=> $upload_files_dir,
 																			'status'	=> $upload_files_dir_writable,
 																		),
-													'temp'			=> array(
-																			'label'		=> 'Temp directory',
-																			'file'		=> $upload_temp_dir,
-																			'status'	=> $upload_temp_dir_writable,
+													'cache'			=> array(
+																			'label'		=> 'Cache directory',
+																			'file'		=> $cache_dir,
+																			'status'	=> $cache_dir_writable,
 																		),
 												);
 							foreach ( $write_checks as $check => $values ) {

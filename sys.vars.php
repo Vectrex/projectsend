@@ -14,12 +14,12 @@ session_start();
  * Current version.
  * Updated only when releasing a new downloadable complete version.
  */
-define('CURRENT_VERSION', 'r1053');
+define('CURRENT_VERSION', 'r1070');
 
 /**
  * Required software versions
  */
-define('REQUIRED_VERSION_PHP', '5.2');
+define('REQUIRED_VERSION_PHP', '5.6');
 define('REQUIRED_VERSION_MYSQL', '5.0');
 
 /**
@@ -60,16 +60,19 @@ define('GLOBAL_TIME_LIMIT', 240*60);
 define('UPLOAD_TIME_LIMIT', 120*60);
 @set_time_limit(GLOBAL_TIME_LIMIT);
 
+DEFINE('DS', DIRECTORY_SEPARATOR);
+
 /**
  * Define the RSS url to use on the home news list.
  */
-define('NEWS_FEED_URI','https://www.projectsend.org/feed/');
-
+// define('NEWS_FEED_URI','https://www.projectsend.org/feed/');
+define('NEWS_FEED_URI','https://www.projectsend.org/serve/news');
 /**
  * Define the Feed from where to take the latest version
  * number.
  */
-define('UPDATES_FEED_URI','https://projectsend.org/updates/versions.xml');
+// define('UPDATES_FEED_URI','https://projectsend.org/updates/versions.xml');
+define('UPDATES_FEED_URI','https://projectsend.org/serve/versions');
 
 /**
  * Check if the personal configuration file exists
@@ -205,6 +208,9 @@ define('SESSION_EXPIRE_TIME', $session_expire_time);
  */
 define('UPLOADED_FILES_FOLDER', ROOT_DIR.'/upload/files/');
 define('UPLOADED_FILES_URL', 'upload/files/');
+
+/* Cache folder */
+define('JSON_CACHE_DIR', ROOT_DIR.DS.'cache'); 
 
 /**
  * Define the folder where the uploaded files are stored before

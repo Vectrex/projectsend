@@ -46,15 +46,15 @@ class process {
 	
 	private function login() {
 		global $hasher;
-		$this->sysuser_password		= $_GET['password'];
-		$this->selected_form_lang	= (!empty( $_GET['language'] ) ) ? $_GET['language'] : SITE_LANG;
+		$this->sysuser_password		= $_POST['password'];
+		$this->selected_form_lang	= (!empty( $_POST['language'] ) ) ? $_POST['language'] : SITE_LANG;
 	
 		/** Look up the system users table to see if the entered username exists */
 		$this->statement = $this->dbh->prepare("SELECT * FROM " . TABLE_USERS . " WHERE user= :username OR email= :email");
 		$this->statement->execute(
 						array(
-							':username'	=> $_GET['username'],
-							':email'	=> $_GET['username'],
+							':username'	=> $_POST['username'],
+							':email'	=> $_POST['username'],
 						)
 					);
 		$this->count_user = $this->statement->rowCount();
@@ -98,16 +98,6 @@ class process {
 						$_SESSION['access']		= $this->sysuser_username;
 					}
 
-					/** If "remember me" checkbox is on, set the cookie */
-					if (!empty($_POST['login_form_remember'])) {
-						/*
-						setcookie("loggedin",$sysuser_username,time()+COOKIE_EXP_TIME);
-						setcookie("password",$sysuser_password,time()+COOKIE_EXP_TIME);
-						setcookie("access",$access_string,time()+COOKIE_EXP_TIME);
-						setcookie("userlevel",$user_level,time()+COOKIE_EXP_TIME);
-						*/
-						setcookie("rememberwho",$sysuser_username,time()+COOKIE_EXP_TIME);
-					}
 					/** Record the action log */
 					$this->new_log_action = new LogActions();
 					$this->log_action_args = array(
@@ -118,10 +108,9 @@ class process {
 										);
 					$this->new_record_action = $this->new_log_action->log_action_save($this->log_action_args);
 
-
 					$results = array(
 									'status'	=> 'success',
-									'message'	=> system_message('ok','Login success. Redirecting...','login_response'),
+									'message'	=> __('Login success. Redirecting...','cftp_admin'),
 								);
 					if ($this->user_level == '0') {
 						$results['location']	= BASE_URI."my_files/";
@@ -187,7 +176,7 @@ class process {
 
 		$results = array(
 						'status'	=> 'error',
-						'message'	=> system_message('error',$this->login_err_message,'login_error'),
+						'message'	=> $this->login_err_message,
 					);
 
 		/** Using an external form */
