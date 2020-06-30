@@ -153,8 +153,10 @@ class PSend_Upload_File
 	{
 		$this->file_on_disk		= (!empty($arguments['file_disk'])) ? $arguments['file_disk'] : '';
 		$this->post_file		= (!empty($arguments['file_original'])) ? $arguments['file_original'] : '';
-		$this->name				= encode_html($arguments['name']);
-		$this->description		= encode_html($arguments['description']);
+//		$this->name				= encode_html($arguments['name']);
+//		$this->description		= encode_html($arguments['description']);
+		$this->name				= $arguments['name'];
+		$this->description		= $arguments['description'];
 		$this->uploader			= $arguments['uploader'];
 		$this->uploader_id		= $arguments['uploader_id'];
 		$this->uploader_type	= $arguments['uploader_type'];

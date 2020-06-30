@@ -108,7 +108,8 @@ class UserActions
 		/** Define the account information */
 		$this->username		= encode_html($arguments['username']);
 		$this->password		= $arguments['password'];
-		$this->name				= encode_html($arguments['name']);
+//		$this->name				= encode_html($arguments['name']);
+		$this->name				= $arguments['name'];
 		$this->email			= encode_html($arguments['email']);
 		$this->role				= $arguments['role'];
 		$this->active			= $arguments['active'];
