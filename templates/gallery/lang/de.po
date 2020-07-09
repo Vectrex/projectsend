@@ -1,0 +1,53 @@
+# 
+# Translators:
+# Levin Germann <levin.germann@gmail.com>, 2013
+# Lorenz Monty Schulz-Dievenow, 2016
+# Richard Jaletzki <rjaletzki@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: ProjectSend\n"
+"POT-Creation-Date: 2017-05-16 00:55-0300\n"
+"PO-Revision-Date: 2017-09-23 18:50+0000\n"
+"Last-Translator: Richard Jaletzki <rjaletzki@gmail.com>\n"
+"Language-Team: German (http://www.transifex.com/subwaydesign/projectsend/language/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: template.php:18
+msgid "Gallery"
+msgstr "Gallerie"
+
+#: template.php:61
+msgid "Logout"
+msgstr "Abmelden"
+
+#: template.php:62
+msgid "Upload files"
+msgstr "Dateien hochladen"
+
+#: template.php:71
+msgid "Filter by category"
+msgstr "Nach Kategorie filtern"
+
+#: template.php:74
+msgid "All files"
+msgstr "Alle Dateien"
+
+#: template.php:107
+msgid "There are no files."
+msgstr "Es sind keine Dateien vorhanden."
+
+#: template.php:121
+msgid "File expired"
+msgstr "Datei abgelaufen"
+
+#: template.php:140
+msgid "Download original"
+msgstr "Original herunterladen"

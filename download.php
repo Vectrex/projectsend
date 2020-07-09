@@ -40,10 +40,9 @@ include('header-unlogged.php');
 			$is_public		= $got_url['public_allow'];
 			$expires		= $got_url['expires'];
 			$expiry_date	= $got_url['expiry_date'];
-
 			$file_title			= htmlentities($got_url['filename']);
 			$file_description	= htmlentities_allowed($got_url['description']);
-			
+
 			if ($expires == '1' && time() > strtotime($expiry_date)) {
 				$can_download = false;
 			}
@@ -155,7 +154,14 @@ include('header-unlogged.php');
 						<p><?php _e('The following file is now ready for you to download:','cftp_admin'); ?><br /><strong><?php echo $real_file_url; ?></strong></p>
 						<h3><?php echo $file_title; ?></h3>
 						<div class="download_description">
-							<?php echo $file_description; ?>
+						
+							<?php 
+							// agindo changed these lines: mh 20200708
+							$new_file_description = strip_tags(html_entity_decode($file_description));
+							echo $new_file_description;
+
+							//echo strip_tags($file_description); 
+							?>
 						</div>
 						<a href="<?php echo $download_link; ?>" class="btn btn-primary">
 							<?php _e('Download file','cftp_admin'); ?>
@@ -170,7 +176,7 @@ include('header-unlogged.php');
 						<p><strong><?php echo $real_file_url; ?></strong></p>
 						<h3><?php echo $file_title; ?></h3>
 						<div class="download_description">
-							<?php echo $file_description; ?>
+							<?php echo strip_tags($file_description); ?>
 						</div>
 					</div>
 				<?php

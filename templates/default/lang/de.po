@@ -1,0 +1,121 @@
+# 
+# Translators:
+# Levin Germann <levin.germann@gmail.com>, 2013
+# Lorenz Monty Schulz-Dievenow, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: ProjectSend\n"
+"POT-Creation-Date: 2016-09-14 15:42-0300\n"
+"PO-Revision-Date: 2017-09-23 18:50+0000\n"
+"Last-Translator: Lorenz Monty Schulz-Dievenow\n"
+"Language-Team: German (http://www.transifex.com/subwaydesign/projectsend/language/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: template.php:15
+msgid "File downloads"
+msgstr "Datei Downloads"
+
+#: template.php:43
+msgid "Search"
+msgstr "Suchen"
+
+#: template.php:52
+msgid "All categories"
+msgstr "Alle Kategorien"
+
+#: template.php:59
+msgid "Filter"
+msgstr "Filter"
+
+#: template.php:72
+msgid "Selected files actions"
+msgstr "Aktionen für die ausgewählten Dateien"
+
+#: template.php:74
+msgid "Download zipped"
+msgstr "Download gezippt"
+
+#: template.php:76
+msgid "Proceed"
+msgstr "Fortfahren"
+
+#: template.php:85
+msgid "Showing"
+msgstr "Angezeigen"
+
+#: template.php:85
+msgid "files"
+msgstr "Dateien"
+
+#: template.php:95
+msgid "Your search keywords returned no results."
+msgstr "Ihre Suchbegriffe ergaben keine Treffer."
+
+#: template.php:100
+msgid "There are no files available."
+msgstr "Es sind keine Dateien verfügbar."
+
+#: template.php:112
+msgid "Title"
+msgstr "Titel"
+
+#: template.php:113
+msgid "Ext."
+msgstr "DW"
+
+#: template.php:114
+msgid "Description"
+msgstr "Beschreibung"
+
+#: template.php:115
+msgid "Size"
+msgstr "Grösse"
+
+#: template.php:116
+msgid "Date"
+msgstr "Datum"
+
+#: template.php:117
+msgid "Expiration date"
+msgstr "Ablaufdatum"
+
+#: template.php:118
+msgid "Image preview"
+msgstr "Bild Vorschau"
+
+#: template.php:119 template.php:235
+msgid "Download"
+msgstr "Download"
+
+#: template.php:192
+msgid "Never"
+msgstr "niemals"
+
+#: template.php:205
+msgid "File expired"
+msgstr "Datei abgelaufen"
+
+#: template.php:249
+msgid "Results navigation"
+msgstr "Results navigation"
+
+#: template.php:268
+msgid "Please select at least one file to proceed."
+msgstr "Bitte wählen Sie mindestens eine Datei um fortzufahren."
+
+#: template.php:283
+msgid "Please wait while your download is prepared."
+msgstr "Bitte warten Sie während Ihr Download vorbereitet wird."
+
+#: template.php:284
+msgid ""
+"This operation could take a few minutes, depending on the size of the files."
+msgstr "Diese Aktion könnte einige Minuten benötigen, abhängig von der Größe der Dateien."

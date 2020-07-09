@@ -1,0 +1,70 @@
+# 
+# Translators:
+# Levin Germann <levin.germann@gmail.com>, 2013
+# Lorenz Monty Schulz-Dievenow, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: ProjectSend\n"
+"POT-Creation-Date: 2016-09-14 15:51-0300\n"
+"PO-Revision-Date: 2017-09-23 18:50+0000\n"
+"Last-Translator: Lorenz Monty Schulz-Dievenow\n"
+"Language-Team: German (http://www.transifex.com/subwaydesign/projectsend/language/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: font-awesome-4.6.3\n"
+"X-Poedit-SearchPathExcluded-1: js\n"
+
+#: template.php:16
+msgid "Available files"
+msgstr "Vorhandene Dateien"
+
+#: template.php:89
+msgid "Welcome"
+msgstr "Willkommen"
+
+#: template.php:94
+msgid "Search..."
+msgstr "Suchen..."
+
+#: template.php:104
+msgid "Categories"
+msgstr "Kategorien"
+
+#: template.php:106
+msgid "All files"
+msgstr "Alle Dateien"
+
+#: template.php:125
+msgid "Upload files"
+msgstr "Datei hochladen"
+
+#: template.php:128
+msgid "Logout"
+msgstr "Abmelden"
+
+#: template.php:142
+msgid "There are no files."
+msgstr "Es sind keine Dateien vorhanden."
+
+#: template.php:206
+msgid "File size:"
+msgstr "Dateigrösse:"
+
+#: template.php:216
+msgid "Expiration date:"
+msgstr "Ablaufdatum:"
+
+#: template.php:227
+msgid "Download"
+msgstr "Runterladen"
+
+#: template.php:233
+msgid "File expired"
+msgstr "Datei abgelaufen"
