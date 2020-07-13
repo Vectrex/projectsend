@@ -153,12 +153,13 @@ include('header-unlogged.php');
 					<div class="text-center">
 						<p><?php _e('The following file is now ready for you to download:','cftp_admin'); ?><br /><strong><?php echo $real_file_url; ?></strong></p>
 						<h3><?php echo $file_title; ?></h3>
-						<div class="download_description">
+						<div class="download_description" style="margin-bottom: 1rem;">
 						
 							<?php 
 							// agindo changed these lines: mh 20200708
-							$new_file_description = strip_tags(html_entity_decode($file_description));
-							echo $new_file_description;
+							// $new_file_description = strip_tags(html_entity_decode($file_description));
+							echo $file_description;
+							// echo $new_file_description;
 
 							//echo strip_tags($file_description); 
 							?>
