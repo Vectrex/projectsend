@@ -27,8 +27,8 @@ if ($_POST) {
 	 * Clean the posted form values to be used on the groups actions,
 	 * and again on the form if validation failed.
 	 */
-	$add_group_data_name = encode_html($_POST['add_group_form_name']);
-	$add_group_data_description = encode_html($_POST['add_group_form_description']);
+	$add_group_data_name = $_POST['add_group_form_name'];
+	$add_group_data_description = $_POST['add_group_form_description'];
 	$add_group_data_members = ( !empty( $_POST['add_group_form_members'] ) ) ? $_POST['add_group_form_members'] : null;
 	$add_group_data_public = (isset($_POST["add_group_form_public"])) ? 1 : 0;
 

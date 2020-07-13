@@ -372,10 +372,10 @@ include('header.php');
 													'value'			=> $row["id"],
 												),
 											array(
-													'content'		=> html_output( $row["name"] ),
+													'content'		=> $row["name"],
 												),
 											array(
-													'content'		=> html_output( $row["description"] ),
+													'content'		=> $row["description"],
 												),
 											array(
 													'content'		=> ( isset( $members_amount[$row['id']] ) ) ? $members_amount[$row['id']] : '0',
