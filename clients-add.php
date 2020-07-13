@@ -34,14 +34,14 @@ if ($_POST) {
 	 * Clean the posted form values to be used on the clients actions,
 	 * and again on the form if validation failed.
 	 */
-	$add_client_data_name = encode_html($_POST['add_client_form_name']);
-	$add_client_data_user = encode_html($_POST['add_client_form_user']);
-	$add_client_data_email = encode_html($_POST['add_client_form_email']);
+	$add_client_data_name = $_POST['add_client_form_name'];
+	$add_client_data_user = $_POST['add_client_form_user'];
+	$add_client_data_email = $_POST['add_client_form_email'];
 	/** Optional fields: Address, Phone, Internal Contact, Notify */
-	$add_client_data_addr = (isset($_POST["add_client_form_address"])) ? encode_html($_POST["add_client_form_address"]) : '';
-	$add_client_data_phone = (isset($_POST["add_client_form_phone"])) ? encode_html($_POST["add_client_form_phone"]) : '';
-	$add_client_data_intcont = (isset($_POST["add_client_form_intcont"])) ? encode_html($_POST["add_client_form_intcont"]) : '';
-	$add_client_data_maxfilesize = (isset($_POST["add_client_form_maxfilesize"])) ? encode_html($_POST["add_client_form_maxfilesize"]) : '';
+	$add_client_data_addr = (isset($_POST["add_client_form_address"])) ? $_POST["add_client_form_address"] : '';
+	$add_client_data_phone = (isset($_POST["add_client_form_phone"])) ? $_POST["add_client_form_phone"] : '';
+	$add_client_data_intcont = (isset($_POST["add_client_form_intcont"])) ? $_POST["add_client_form_intcont"] : '';
+	$add_client_data_maxfilesize = (isset($_POST["add_client_form_maxfilesize"])) ? $_POST["add_client_form_maxfilesize"] : '';
 	$add_client_data_notify_upload = (isset($_POST["add_client_form_notify_upload"])) ? 1 : 0;
 	$add_client_data_notify_account = (isset($_POST["add_client_form_notify_account"])) ? 1 : 0;
 	$add_client_data_active = (isset($_POST["add_client_form_active"])) ? 1 : 0;
