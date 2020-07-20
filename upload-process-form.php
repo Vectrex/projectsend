@@ -312,11 +312,13 @@ while( $row = $statement->fetch() ) {
 			</thead>
 			<tbody>
 			<?php
+                var_dump($upload_finish);
+
 				foreach($upload_finish as $uploaded) {
 			?>
 					<tr>
-						<td><?php echo html_output($uploaded['name']); ?></td>
-						<td><?php echo htmlentities_allowed($uploaded['description']); ?></td>
+						<td><?php echo $uploaded['name']; ?></td>
+						<td><?php echo html_entity_decode($uploaded['description']); ?></td>
 						<td><?php echo html_output($uploaded['file']); ?></td>
 						<?php
 							if ($current_level != 0) {

@@ -156,12 +156,7 @@ include('header-unlogged.php');
 						<div class="download_description" style="margin-bottom: 1rem;">
 						
 							<?php 
-							// agindo changed these lines: mh 20200708
-							// $new_file_description = strip_tags(html_entity_decode($file_description));
-							echo $file_description;
-							// echo $new_file_description;
-
-							//echo strip_tags($file_description); 
+							echo html_entity_decode($file_description);
 							?>
 						</div>
 						<a href="<?php echo $download_link; ?>" class="btn btn-primary">
